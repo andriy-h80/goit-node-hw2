@@ -22,3 +22,36 @@ const userSchema = new Schema({
 }, {versionKey: false, timestamps: true});
 
 userSchema.post("save", handleMongooseError);
+
+const registerSchema = Joi.object({
+    name: Joi.string().required().messages({
+        "any.required": "missing required name field",
+    }),
+    email: Joi.string().required().messages({
+        "any.required": "missing required email field",
+    }),
+    password: Joi.string().required().messages({
+        "any.required": "missing required phone field",
+    }),
+});
+
+const loginSchema = Joi.object({
+    email: Joi.string().required().messages({
+        "any.required": "missing required email field",
+    }),
+    password: Joi.string().required().messages({
+        "any.required": "missing required phone field",
+    }),
+});
+
+const schemas = {
+    registerSchema,
+    loginSchema,
+};
+
+const User = model("user", userSchema);
+
+module.exports = {
+    User,
+    schemas,
+};

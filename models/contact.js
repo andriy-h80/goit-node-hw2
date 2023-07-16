@@ -46,7 +46,7 @@ const updateFavoriteSchema = Joi.object({
     favorite: Joi.boolean().required().messages({
         "any.required": "missing required favorite field",
     }),
-})
+});
  
 const schemas = {
     addSchema,
