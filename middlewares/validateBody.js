@@ -8,9 +8,9 @@ const validateBody = schema => {
         const { error } = schema.validate(req.body);
         if(error){
             const fieldName = error.details[0].context.label;
-            next(HttpError(400, `missing required ${fieldName} field`));
+            next(HttpError(400, `missing required '${fieldName}' field`));
         }
-        next()
+        next();
     };
 
     return func;

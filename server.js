@@ -15,3 +15,4 @@ mongoose.connect(DB_HOST)
     console.log(`Database connection failed. Error message: ${error.message}`);
     process.exit(1);
   })
+  

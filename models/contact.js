@@ -21,6 +21,11 @@ const contactSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true,
+    }
 }, {versionKey: false, timestamps: true});
 
 contactSchema.post("save", handleMongooseError);
@@ -42,7 +47,7 @@ const updateFavoriteSchema = Joi.object({
     favorite: Joi.boolean().required().messages({
         "any.required": "missing required favorite field",
     }),
-})
+});
  
 const schemas = {
     addSchema,
