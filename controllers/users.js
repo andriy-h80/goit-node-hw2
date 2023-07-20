@@ -81,10 +81,8 @@ const changeSubscription = async(req, res) => {
     }
 
     res.status(200).json({
-        "user": {
             id,
             subscription,
-        }
     }); 
 };
 
