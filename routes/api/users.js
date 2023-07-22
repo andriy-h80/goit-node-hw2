@@ -2,7 +2,7 @@ const express = require("express");
 
 const ctrl = require("../../controllers/users");
 
-const {validateBody, authenticate, validateSubscription} = require("../../middlewares");
+const {validateBody, authenticate, validateSubscription, upload} = require("../../middlewares");
 
 const {schemas} = require("../../models/user");
 
@@ -17,5 +17,7 @@ router.post("/logout", authenticate, ctrl.logout);
 router.get("/current", authenticate, ctrl.getCurrent);
 
 router.patch("/", authenticate, validateSubscription(schemas.subscriptionSchema), ctrl.changeSubscription);
+
+router.patch("/avatars", authenticate, upload.single("avatar"), ctrl.updateAvatar);
 
 module.exports = router;
